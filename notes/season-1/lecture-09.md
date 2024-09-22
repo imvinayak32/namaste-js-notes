@@ -1,19 +1,30 @@
 # Episode 9 : Block Scope & Shadowing in JS
 
-What is a **Block**?
-* Block aka *compound statement* is used to group JS statements together into 1 group. We group them within {...}
-    ```js
-    {
-        var a = 10;
-        let b = 20;
-        const c = 30;
-        // Here let and const are hoisted in Block scope,
-        // While, var is hoisted in Global scope.
-    }
-    ```
+## Block?
+* Block aka *compound statement* is used to group multiple JS statements together into 1 group. We group them within {...}
 
-* Block Scope and its accessibility example
-    ```js
+Why **Block**?
+* We combine multiple Js statements in block, so that it can be used where Js excepts a single statement.
+* if (condition) single_statement;
+* To use multiple statements here, we can use like this - 
+
+  ![image](https://github.com/user-attachments/assets/72d4727f-fe88-42b8-aed3-c2297d20dde6)
+
+
+## Block Scope?
+* what all variables and function we can access inside a block, is know as block scope
+```js
+{
+    var a = 10;
+    let b = 20;
+    const c = 30;
+    // Here let and const are hoisted in Block scope,
+    // While, var is hoisted in Global scope.
+}
+```
+![image](https://github.com/user-attachments/assets/a59dec32-02c2-4332-9392-e956c0a5ca76)
+
+```js
     {
         var a = 10;
         let b = 20;
@@ -21,16 +32,16 @@ What is a **Block**?
     }
     console.log(a); // 10
     console.log(b); // Uncaught ReferenceError: b is not defined
-    ```
-    * Reason?
-        * In the BLOCK SCOPE; we get b and c inside it initialized as *undefined* as a part of hoisting (in a seperate memory space called **block**)
-        * While, a is stored inside a GLOBAL scope. 
+```
+* Reason?
+  * In the BLOCK SCOPE; we get b and c inside it initialized as *undefined* as a part of hoisting (in a seperate memory space called **block**)
+  * While, a is stored inside a GLOBAL scope. 
 
-        * Thus we say, *let* and *const* are BLOCK SCOPED. They are stored in a separate mem space which is reserved for this block. Also, they can't be accessed outside this block. But var a can be accessed anywhere as it is in global scope. Thus, we can't access them outside the Block.
+  * Thus we say, *let* and *const* are BLOCK SCOPED. They are stored in a separate mem space which is reserved for this block. Also, they can't be accessed outside this block. But var a can be accessed anywhere as it is in global scope. Thus, we can't access them outside the Block.
 
-What is **Shadowing**?
+## Shadowing?
 
-* ```js
+```js
     var a = 100;
     {
         var a = 10; // same name as global var
@@ -40,9 +51,13 @@ What is **Shadowing**?
         console.log(b); // 20
         console.log(c); // 30 
     }
-    console.log(a); // 10, instead of the 100 we were expecting. So block "a" modified val of global "a" as well. In console, only b and c are in block space. a initially is in global space(a = 100), and when a = 10 line is run, a is not created in block space, but replaces 100 with 10 in global space itself. 
-    ```
-
+    console.log(a); // 10, Why??
+```
+* Reason - 
+    * Initially 'a' is in global space (a = 100)
+    * When a = 10 line is run, a is not created in block space, but replaces 100 with 10 in global space itself.
+    * As var is associated with Global Execution Context itself.
+  
 * So, If one has same named variable outside the block, the variable inside the block *shadows* the outside variable. **This happens only for var**
 
 * Let's observe the behaviour in case of let and const and understand it's reason.
@@ -88,13 +103,3 @@ What is **Illegal Shadowing**?
             var a = 20;
         }
         ```
-
-
-
-
-<hr>
-
-Watch Live On Youtube below:
-
-<a href="https://www.youtube.com/watch?v=lW_erSjyMeM&ab_channel=AkshaySaini" target="_blank"><img src="https://img.youtube.com/vi/lW_erSjyMeM/0.jpg" width="750"
-alt="Block Scope & Shadowing in JS Youtube Link"/></a>
