@@ -83,7 +83,7 @@ console.log(b); // Error, Not Defined
 
 * **Let's see how it is used?**
   
-      ![Lexical Scope Explaination](/assets/lexical.jpg "Lexical Scope")
+  ![Lexical Scope Explaination](/assets/lexical.jpg "Lexical Scope")
 
 * When we encountered **console.log(b)** inside function c(), it first searches b in it's local memory space, since it is not available there. So, it moves to Lexical environment of it's parent and similarly moves to next if not available there as well untill null.
 
