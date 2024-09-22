@@ -6,7 +6,7 @@
   
   ![image](https://github.com/user-attachments/assets/bed5b087-ac71-4cc4-80e3-a39c02d0d7b8)
 
-* In summary, <mark>along with GEC, a global object (window) and a this variable are created</mark>
+* In summary, <mark>along with GEC, a global object (window) and 'this' variable are created</mark>
 
 * In different engines, the name of global object changes. Window in browsers, but in nodeJS it is called something else. At global level, this === window
 
