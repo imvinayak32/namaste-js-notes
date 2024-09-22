@@ -1,7 +1,7 @@
 # Episode 7 : The Scope Chain, Scope & Lexical Environment
 ## Scope
-* <mark>What is the scope this variable b?</mark> that means where I can access this variable b.
-* <mark>Is b inside the scope of function c()</mark> that means is that variable accessible inside c() or not.
+* <mark>What is the scope of this variable b?</mark> that means where I can access this variable b.
+* <mark>Is b inside the scope of function c()</mark> that means is that variable 'b' accessible inside c() or not.
 
 > **Scope** in Javascript is directly related to **Lexical Environment**.
 
