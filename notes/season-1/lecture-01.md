@@ -7,9 +7,9 @@
 
 - In the container the first component is **memory component** and the 2nd one is **code component**
 
-- Memory component has all the variables and functions in key value pairs. It is also called **Variable environment**.
+- Memory component has all the variables and functions in key value pairs. It is also called <mark>Variable environment</mark>.
 
-- Code component is the place where code is executed **one line** at a time. It is also called the **Thread of Execution**.
+- Code component is the place where code is executed **one line** at a time. It is also called the <mark>Thread of Execution</mark>.
 
 - JS is a **synchronous**, **single-threaded** language
   - Synchronous:- In a specific synchronous order.
