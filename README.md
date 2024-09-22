@@ -1,7 +1,5 @@
 # Welcome to Namaste Javascript Notes 🚀
 
-![Namaste-JavaScript-Banner](https://socialify.git.ci/alok722/namaste-javascript-notes/image?description=1&font=Raleway&forks=1&logo=https://www.tutorialrepublic.com/lib/images/javascript-illustration.png&owner=1&stargazers=1&theme=Dark)
-
 ## 🏠 [Namaste Javascript Notes Website](https://alok722.github.io/namaste-javascript-notes/dist/lectures.html)
 
 ## 🚀 [PDF Version of Complete Notes](./dist/namaste-javascript-notes.pdf)
