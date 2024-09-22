@@ -24,15 +24,17 @@ b();
 The major difference between these two lies in **Hoisting**.
 ```js
 a(); // "Hello A"
-b(); // TypeError
+b(); // TypeError : b is not a function
 function a() {
   console.log("Hello A");
 }
 var b = function() {
   console.log("Hello B");
 }
-// Why? During mem creation phase a is created in memory and function assigned to a. But b is created like a variable (b:undefined) and until code reaches the function()  part, it is still undefined. So it cannot be called.
 ```
+Why?
+  * During mem creation phase 'a' is created in memory and function assigned to 'a'. But b is created like a variable (b:undefined) and until code reaches the function()  part, it is still undefined. So it cannot be called.
+    
 ### Q: What is Function Declaration?
 Other name for **function statement**.
 
@@ -41,10 +43,13 @@ A function without a name.
 ```js
 function () {
 
-}// this is going to throw Syntax Error - Function Statement requires function name.
+} // Syntax Error - Function Statement requires function name.
 ```
-- They don't have their own identity. So an anonymous function without code inside it results in an error. 
-- Anonymous functions are used when functions are used as values eg. the code sample for **function expression** above.
+* Why error?
+  * They don't have their own identity. So an anonymous function without code inside it, results in an error
+  
+*  Use of Anonymous Functions? 
+    * these are used where functions are used as values eg. the code sample for **function expression** above.
 
 ### Q: What is Named Function Expression?
 Same as Function Expression but function has a name instead of being anonymous.
@@ -66,8 +71,10 @@ b(arg1, arg2); // arguments - values passed inside function call
 ```
 
 ### Q: What is First Class Function aka First Class Citizens?
-We can pass functions inside a function as arguments and 
-/or return a function(HOF). These ability are altogether known as First class function. It is programming concept available in some other languages too.
+* The ability to use functions as values, passed as argument to other functions and returned from other functions.
+* These ability are altogether known as First class function.
+* It is programming concept available in some other languages too.
+
 ```js
 var b = function(param1) {
   console.log(param1); // prints " f() {} "
@@ -89,9 +96,8 @@ var b = function(param1) {
 }
 console.log(b()); //we log the entire fun within b. 
 ```
-<hr>
 
-Watch Live On Youtube below:
+*   Functions, are also known First class citizens.
 
-<a href="https://www.youtube.com/watch?v=SHINoHxvTso&ab_channel=AkshaySaini" target="_blank"><img src="https://img.youtube.com/vi/SHINoHxvTso/0.jpg" width="750"
-alt="First Class Functions ft. Anonymous Functions in JS Youtube Link"/></a>
+### Q: What if instead we use let or const?
+* Ans: Rules of Blocked scope will be applied as it is.
