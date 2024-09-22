@@ -34,7 +34,7 @@ So the **final diagram** before deletion would look something like:
 
 ![Execution Context Phase 2](/assets/final_execution_context.jpg "Execution Context")
 
-* Javascript manages code execution context creation and deletion with the the help of **Call Stack**.
+* Javascript manages execution context creation and deletion with the the help of **Call Stack**.
 
 * Call Stack is a mechanism to keep track of its place in script that calls multiple function.
 
