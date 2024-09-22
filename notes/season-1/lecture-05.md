@@ -8,7 +8,8 @@
 
 * In summary, <mark>along with GEC, a global object (window) and 'this' variable are created</mark>
 
-* In different engines, the name of global object changes. Window in browsers, but in nodeJS it is called something else. At global level, this === window
+* In different engines, the name of global object changes. Window in browsers, but in nodeJS it is called something else.
+  > At global level, this === window
 
 * If we create any variable in the global scope, then the variables get attached to the global object.
 
