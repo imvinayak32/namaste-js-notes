@@ -67,10 +67,3 @@
 * Try using const wherever possible.
 * If not, use let, Avoid var.
 * Declare and initialize all variables with let to the top to avoid errors to shrink temporal dead zone window to zero.
-
-<hr>
-
-Watch Live On Youtube below:
-
-<a href="https://www.youtube.com/watch?v=BNC6slYCj50&ab_channel=AkshaySaini" target="_blank"><img src="https://img.youtube.com/vi/BNC6slYCj50/0.jpg" width="750"
-alt="let & const in JS, Temporal Dead Zone Youtube Link"/></a>
