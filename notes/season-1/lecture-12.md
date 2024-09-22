@@ -11,7 +11,9 @@ function outer() {
     } // inner forms a closure with outer
     return inner;
 }
-outer()(); // 10 // over here first `()` will return inner function and then using second `()` to call inner function 
+outer()(); // 10
+// over here first `()` will return inner function
+// then using second `()` to call inner function 
 ```
 
 ### Q2: Will the below code still forms a closure?
@@ -51,7 +53,7 @@ function outer(str) {
 }
 outer("Hello There")(); // 10 "Hello There"
 ```
-**Ans**: Inner function will now form closure and will have access to both a and str.
+**Ans**: Inner function will form closure with outer environment and a, str variable are part of outer function, or we can say outer env of inner, so it will have access to both a and str.
 
 ### Q5: In below code, will inner form closure with **outest**?
 ```js
@@ -68,7 +70,7 @@ function outest() {
 }
 outest()("Hello There")(); // 10 20 "Hello There"
 ```
-**Ans**: Yes, inner will have access to all its outer environment.
+**Ans**: Yes, inner will have access to all its outer environment. Even if we access the inner function in any other scope, it will still have reference to a, c, str.
 
 ### Q6: Output of below code and explaination?
 ```js
@@ -86,7 +88,7 @@ function outest() {
 let a = 100;
 outest()("Hello There")(); // 10 20 "Hello There"
 ```
-**Ans**: Still the same output, the inner function will have reference to inner a, so conflicting name won't matter here. If it wouldn't have find a inside outer function then it would have went more outer to find a and thus have printed 100. So, it try to resolve variable in scope chain and if a wouldn't have been found it would have given reference error.
+**Ans**: Still the same output, the inner function will have reference to inner a, so conflicting name won't matter here. If it wouldn't have find 'a' in outer function then it would have went more outer to find 'a' in global scope and thus have printed 100. So, it try to resolve variable in scope chain and if 'a' wouldn't have been found it would have given reference error.
 
 ### Q7: Advantage of Closure?
   * Module Design Pattern
@@ -97,12 +99,12 @@ outest()("Hello There")(); // 10 20 "Hello There"
 
 ### Q8: Discuss more on Data hiding and encapsulation?
 ```js
+// Problem here - Anyone can access count and change it. 
 // without closures
 var count = 0;
 function increment(){
   count++;
 }
-// in the above code, anyone can access count and change it. 
 
 ------------------------------------------------------------------
 
@@ -113,7 +115,9 @@ function counter() {
     count++;
   }
 }
-console.log(count); // this will give referenceError as count can't be accessed. So now we are able to achieve hiding of data
+console.log(count);
+// this will give referenceError as count can't be accessed.
+// So, now we are able to achieve Data hiding
 
 ------------------------------------------------------------------
 
@@ -125,11 +129,15 @@ function counter() {
     console.log(count);
   }
 }
-var counter1 = counter(); //counter function has closure with count var. 
+
+// counter function has closure with count var. 
+var counter1 = counter();
 counter1(); // increments counter
 
+// counter2 is whole new copy of counter function
+// it won't impact the output of counter1
 var counter2 = counter();
-counter2(); // here counter2 is whole new copy of counter function and it wont impack the output of counter1
+counter2();
 
 *************************
 
@@ -159,9 +167,10 @@ counter1.decrementCounter();
 
 ### Q9: Disadvantage of closure?
 **Ans**: Overconsumption of memory when using closure as everytime as those closed over variables are not garbage collected till program expires.
-So when creating many closures, more memory is accumulated and this can create memory leaks if not handled.
+So when creating many closures, more memory is accumulated and this can create memory leaks, it may freeze the browser if not handled.
 
-**Garbage collector** : Program in JS engine or browser that frees up unused memory. In highlevel languages like C++ or JAVA, garbage collection is left to the programmer, but in JS engine its done implicitly.
+### Q10: What is Garbage collector?
+**Ans**: Garbage collector is a program in JS engine or browser that frees up unused memory. In highlevel languages like C++ or JAVA, garbage collection is left to the programmer, but in JS engine its done implicitly.
 
 ```js
 function a() {
@@ -170,17 +179,30 @@ function a() {
     console.log(x);
   }
 }
- 
-var y = a(); // y is a copy of b()
+
+// after running a(), it return b()
+// y is a copy of b() 
+var y = a(); 
 y(); 
- 
- // Once a() is called, its element x should be garbage collected ideally. But fun b has closure over var x. So mem of x cannot be freed. Like this if more closures formed, it becomes an issue. To tacke this, JS engines like v8 and Chrome have smart garbage collection mechanisms. Say we have var x = 0, z = 10 in above code. When console log happens, x is printed as 0 but z is removed automatically.
 ```
 
+* Once a() is called, it's element x should be garbage collected ideally. But function b has closure over var x. So memory of x cannot be freed. Like this if more closures formed, it becomes an issue.
+* To tackle this, JS engines like v8 and SpiderMonkey have smart garbage collection mechanisms.
 
-<hr>
+### Q11: What you mean by Smart Garbage Collection?
 
-Watch Live On Youtube below:
+```js
+function a() {
+  var x = 0, z = 10, str = "Hello";
+  return function b() {
+    console.log(x);
+  }
+}
+var y = a(); 
+y(); 
+```
+* b() form closure here, but only required variable x, no need for z and str being part of closure.
+* Smart Garbage collector, detect it somehow and remove them as soon as a() completes.
+  
+  ![CRAZY JS INTERVIEW 🤯ft  Closures _ Namaste 🙏 JavaScript Ep  12 31-33 screenshot](https://github.com/user-attachments/assets/c71e468b-a874-417b-9bf4-a26dddf58067)
 
-<a href="https://www.youtube.com/watch?v=t1nFAMws5FI&ab_channel=AkshaySaini" target="_blank"><img src="https://img.youtube.com/vi/t1nFAMws5FI/0.jpg" width="750"
-alt="Closures Interview Question in JS Youtube Link"/></a>
