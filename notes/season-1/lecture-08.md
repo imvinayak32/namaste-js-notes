@@ -37,13 +37,13 @@ console.log(window.b); // 15
 
 * **Syntax Error** doesn't even let us run single line of code.
 
-    * ```js
-        let a = 10;
-        let a = 100;  //this code is rejected upfront as SyntaxError. (duplicate declaration)
-        ------------------
-        let a = 10;
-        var a = 100; // this code also rejected upfront as SyntaxError. (can't use same name in same scope)
-        ```
+    ```js
+    let a = 10;
+    let a = 100;  //this code is rejected upfront as SyntaxError. (duplicate declaration)
+    ------------------
+    let a = 10;
+    var a = 100; // this code also rejected upfront as SyntaxError. (can't use same name in same scope)
+     ```
 
 * **Let** is a stricter version of **var**. Now, **const** is even more stricter than **let**.
     ```js
