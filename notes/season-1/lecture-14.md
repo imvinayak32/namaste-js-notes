@@ -1,7 +1,13 @@
 # Episode 14 : Callback Functions in JS ft. Event Listeners
 
 ### Callback Functions
-* Functions are first class citizens ie. take a function A and pass it to another function B. Here, A is a callback function. So basically I am giving access to function B to call function A. This callback function gives us the access to whole **Asynchronous** world in **Synchronous** world.
+* Functions are first class citizens ie. take a function A and pass it to another function B. Here, <mark>A is a callback function</mark>. So basically I am giving access to function B to call function A.
+```js
+function B(A() {
+    console.log("I am here");
+})
+```
+* This callback function gives us the access to whole **Asynchronous** world in **Synchronous** world.
 ```js
 setTimeout(function () {
     console.log("Timer");
@@ -10,7 +16,7 @@ setTimeout(function () {
 
 * JS is a synchronous and single threaded language. But due to callbacks, we can do async things in JS.
 
-* ```js
+```js
   setTimeout(function () {
     console.log("timer");
   }, 5000);
@@ -22,7 +28,7 @@ setTimeout(function () {
     console.log("y");
   });
   // x y timer
-  ```
+```
   * In the call stack, first x and y are present. After code execution, they go away and stack is empty. Then after 5 seconds (from beginning) anonymous suddenly appear up in stack ie. setTimeout
   * All 3 functions are executed through call stack. If any operation blocks the call stack, its called blocking the main thread.
   * Say if x() takes 30 sec to run, then JS has to wait for it to finish as it has only 1 call stack/1 main thread. Never block main thread.
@@ -52,7 +58,8 @@ setTimeout(function () {
     <button id="clickMe">Click Me!</button>
 
   // in index.js
-  document.getElementById("clickMe").addEventListener("click", function xyz(){ //when event click occurs, this callback function (xyz) is called into callstack
+  document.getElementById("clickMe").addEventListener("click", function xyz(){
+  //when event click occurs, this callback function (xyz) is called into 'Call Stack'
         console.log("Button clicked");
   });
   ```
@@ -79,10 +86,3 @@ setTimeout(function () {
 ### Garbage Collection and removeEventListeners
 
 * Event listeners are heavy as they form closures. So even when call stack is empty, EventListener won't free up memory allocated to count as it doesn't know when it may need count again. So we remove event listeners when we don't need them (garbage collected) onClick, onHover, onScroll all in a page can slow it down heavily.
-
-<hr>
-
-Watch Live On Youtube below:
-
-<a href="https://www.youtube.com/watch?v=btj35dh3_U8&ab_channel=AkshaySaini" target="_blank"><img src="https://img.youtube.com/vi/btj35dh3_U8/0.jpg" width="750"
-alt="Callback Functions in JS ft. Event Listeners in JS Youtube Link"/></a>
