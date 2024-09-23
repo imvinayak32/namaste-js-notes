@@ -14,10 +14,12 @@ y(x); // Hi
 // x is a callback function
 ```
 
-Let's try to understand how we should approach solution in interview.
-I have an array of radius and I have to calculate area using these radius and store in an array.
+## Let's try to understand how we should approach solution in interview.
+> Using few concepts of "Functional Programming"
+>
+> Think logic in terms of functions and use generic type functions as well.
+1. I have an array of radius and I have to calculate area using these radius and store in an array.
 
-First Approach:
 ```js
 const radius = [1, 2, 3, 4];
 const calculateArea = function(radius) {
@@ -29,7 +31,8 @@ const calculateArea = function(radius) {
 }
 console.log(calculateArea(radius));
 ```
-The above solution works perfectly fine but what if we have now requirement to calculate array of circumference. Code now be like
+
+2. We have to calculate array of circumference more.
 ```js
 const radius = [1, 2, 3, 4];
 const calculateCircumference = function(radius) {
@@ -41,7 +44,23 @@ const calculateCircumference = function(radius) {
 }
 console.log(calculateCircumference(radius));
 ```
-But over here we are violating some principle like DRY Principle, now lets observe the better approach.
+
+3. We have to calculate array of diameter more.
+```js
+const radius = [1, 2, 3, 4];
+const calculateDiameter = function(radius) {
+    const output = [];
+    for (let i = 0; i < radius.length; i++) {
+        output.push(2 * radius[i]);
+    } 
+    return output;
+}
+console.log(calculateDiameter(radius));
+```
+
+> But over here we are violating some principle like DRY Principle !!!
+
+### Let's observe the better approach
 ```js
 const radiusArr = [1, 2, 3, 4];
 
@@ -49,31 +68,41 @@ const radiusArr = [1, 2, 3, 4];
 const area = function (radius) {
     return Math.PI * radius * radius;
 }
-
 // logic to calculate circumference
 const circumference = function (radius) {
     return 2 * Math.PI * radius;
 }
+// logic to calculate diameter
+const diameter = function (radius) {
+    return 2 * radius;
+}
 
-const calculate = function(radiusArr, operation) {
+// Generic Function - by passing logic, we can extract different results out of it!
+const calculate = function(radiusArr, logic) {
     const output = [];
     for (let i = 0; i < radiusArr.length; i++) {
-        output.push(operation(radiusArr[i]));
+        output.push(logic(radiusArr[i]));
     } 
     return output;
 }
 console.log(calculate(radiusArr, area));
 console.log(calculate(radiusArr, circumference));
-// Over here calculate is HOF
-// Over here we have extracted logic into separate functions. This is the beauty of functional programming.
+console.log(calculate(radiusArr, diameter));
+```
+* Over here calculate() is HOF
+* Over here we have extracted logic into separate functions. This is the beauty of functional programming.
 
-Polyfill of map
-// Over here calculate is nothing but polyfill of map function
-// console.log(radiusArr.map(area)) == console.log(calculate(radiusArr, area));
+### Another way - map
+  
+```js
+  console.log(radiusArr.map(area)) == console.log(calculate(radiusArr, area));
+  // map will iterate through radiusArr and uses area() for each of it's value
+```
 
-***************************************************
-Lets convert above calculate function as map function and try to use. So,
-
+### Polyfill of map
+* Over here calculate is nothing but polyfill of map function
+* Let's convert above calculate function as map function
+```js
 Array.prototype.calculate = function(operation) {
     const output = [];
     for (let i = 0; i < this.length; i++) {
@@ -83,13 +112,3 @@ Array.prototype.calculate = function(operation) {
 }
 console.log(radiusArr.calculate(area))
 ```
-
-
-
-
-<hr>
-
-Watch Live On Youtube below:
-
-<a href="https://www.youtube.com/watch?v=HkWxvB1RJq0&ab_channel=AkshaySaini" target="_blank"><img src="https://img.youtube.com/vi/HkWxvB1RJq0/0.jpg" width="750"
-alt="Higher-Order Functions ft. Functional Programming in JS Youtube Link"/></a>
