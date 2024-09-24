@@ -1,11 +1,12 @@
 # Episode 22 : Creating a Promise, Chaining & Error Handling
 
-###
+## Creation of Promise
+There are two things creattion and production of Promises
 
+### Consumer part of promise
 ```js
 const cart = ["shoes", "pants", "kurta"];
 
-// Consumer part of promise
 const promise = createOrder(cart); // orderId
 // Our expectation is above function is going to return me a promise.
 
@@ -16,36 +17,41 @@ promise.then(function (orderId) {
 // Above snippet we have observed in our previous lecture itself.
 // Now we will see, how createOrder is implemented so that it is returning a promise
 // In short we will see, "How we can create Promise" and then return it.
+```
 
-// Producer part of Promise
+### Producer part of Promise
+* JS provides a Promise constructor, to we can create promise
+* It accepts a callback function with two parameter `resolve` & `reject`
+
+    > What is this `resolve` and `reject`?
+* These are function which are passed by javascript to us in order to handle success and failure of function call.
+
+> write logic to `createOrder`
+>
+> 1. ValidateCart - in real world scenario, validateCart have also it's logic
+>
+> 2. Insert in DB and get an orderId
+>
+> It could be different based on what business required!!
+
+```js
 function createOrder(cart) {
-  // JS provides a Promise constructor through which we can create promise
-  // It accepts a callback function with two parameter `resolve` & `reject`
   const promise = new Promise(function (resolve, reject) {
-    // What is this `resolve` and `reject`?
-    // These are function which are passed by javascript to us in order to handle success and failure of function call.
-    // Now we will write logic to `createOrder`
-    /** Mock logic steps
-     * 1. validateCart
-     * 2. Insert in DB and get an orderId
-     */
-    // We are assuming in real world scenario, validateCart would be defined
     if (!validateCart(cart)) {
-      // If cart not valid, reject the promise
-      const err = new Error("Cart is not Valid");
-      reject(err);
+        // If cart not valid, reject the promise
+       const err = new Error("Cart is not Valid");
+       reject(err);
     }
-    const orderId = "12345"; // We got this id by calling to db (Assumption)
+    const orderId = "12345"; // We got this id by calling to db
     if (orderId) {
-      // Success scenario
-      resolve(orderId);
+        resolve(orderId); // Success scenario
     }
   });
   return promise;
 }
 ```
 
-Over above, if your validateCart is returning true, so the above promise will be resolved (success),
+* Over above, if your validateCart is returning true, so the above promise will be resolved (success),
 
 ```js
 const cart = ["shoes", "pants", "kurta"];
@@ -194,10 +200,3 @@ createOrder(cart)
     console.log(paymentInfo);
   })
 ```
-
-<hr>
-
-Watch Live On Youtube below:
-
-<a href="https://www.youtube.com/watch?v=U74BJcr8NeQ&list=PLlasXeu85E9eWOpw9jxHOQyGMRiBZ60aX&index=4&ab_channel=AkshaySaini" target="_blank"><img src="https://img.youtube.com/vi/U74BJcr8NeQ/0.jpg" width="750"
-alt="promise in Javascript Youtube Link"/></a>
