@@ -1,8 +1,6 @@
 # Episode 24 : Promise APIs (all, allSettled, race, any) + Interview Questions 🔥
 
-###
-
-4 Promise APIs which are majorly used:
+### 4 Promise APIs which are majorly used:
 - Promise.all()
 - Promise.allSettled()
 - Promise.race()
@@ -10,7 +8,7 @@
 
 💡 One simply doesn't use async/await without knowing promises!
 
-### Promise.all()
+## Promise.all()
 > A promise is a placeholder for a value that's going to be available sometime later. The promise helps handle asynchronous operations. JavaScript provides a helper function Promise.all(promisesArrayOrIterable) to handle multiple promises at once, in parallel, and get the results in a single aggregate array.
 
 Q: In what situation one could use above api?  
@@ -36,7 +34,7 @@ What if any of the promise gets rejected, for eg: Promise.all([p1, p2, p3]). But
 💡 Promise.all() -> Fail Fast  
 💡 Promise.allSettled() -> Will wait and provide accumulative result
 
-### Promise.race()
+## Promise.race()
 > The Promise.race() static method accepts a list of promises as an iterable object and returns a new promise that fulfills or rejects as soon as there is one promise that fulfills or rejects, with the value or reason from that promise. The name of Promise.race() implies that all the promises race against each other with a single winner, either resolved or rejected.
 
 Promise.race([p1, p2, p3]) -> Lets assume we are making 3 API call to fetch data. Also assume **p1** takes **3 seconds**, **p2** takes **1 second**, **p3** takes **2 seconds**.  So as soon as first promise will resolve or reject, it will give the output.  
@@ -105,7 +103,7 @@ Promise.all([p1, p2, p3])
   .catch(err => console.error(err)); // throws error after 1 sec i.e. 'P2 Fails'
 ```
 
-### Promise.allSettled()
+## Promise.allSettled()
 
 💡This is safest among all Promises API.
 
@@ -140,7 +138,7 @@ Promise.allSettled([p1, p2, p3])
   */
 ```
 
-### Promise.race()
+## Promise.race()
 
 ```js
 // 📌 First Scenario
@@ -200,7 +198,7 @@ Notes:
 1. resolve, success, fulfilled
 2. reject, failure, rejected
 
-### Promise.any()
+## Promise.any()
 
 ```js
 // 📌 First Scenario
@@ -303,11 +301,3 @@ value (if fulfilled) or reason (if rejected).
 
 > Promise.reject(error) – makes a rejected promise with the given error.
 Of all these, Promise.all is probably the most common in practice.
-
-
-<hr>
-
-Watch Live On Youtube below:
-
-<a href="https://www.youtube.com/watch?v=DlTVt1rZjIo&list=PLlasXeu85E9eWOpw9jxHOQyGMRiBZ60aX&index=4&ab_channel=AkshaySaini" target="_blank"><img src="https://img.youtube.com/vi/DlTVt1rZjIo/0.jpg" width="750"
-alt="async-await in Javascript Youtube Link"/></a>
