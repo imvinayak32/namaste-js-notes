@@ -36,8 +36,8 @@ console.log("Season 2");
 
 // 💡 Here we are delaying the execution using callback approach of setTimeout.
 ```
-
-### 🛒 e-Commerce web app situation
+## Callback Hell
+#### 🛒 e-Commerce web app situation
 
 Assume a scenario of e-Commerce web, where one user is placing order, he has added items like, shoes, pants and kurta in cart and now he is placing order. So in backend the situation could look something like this.
 
@@ -59,7 +59,8 @@ Callback can come as rescue, How?
 api.createOrder(cart, function () {
   api.proceedToPayment();
 });
-// 💡 Over here `createOrder` api is first creating a order then it is responsible to call `api.proceedToPayment()` as part of callback approach.
+// 💡 Over here `createOrder` api is first creating a order then,
+// it is responsible to call `api.proceedToPayment()` as part of callback approach.
 ```
 
 To make it a bit complicated, what if after payment is done, you have to show Order summary by calling `api.showOrderSummary()` and now it has dependency on `api.proceedToPayment()`
@@ -67,9 +68,9 @@ Now my code should look something like this:
 
 ```js
 api.createOrder(cart, function () {
-  api.proceedToPayment(function () {
-    api.showOrderSummary();
-  });
+    api.proceedToPayment(function () {
+        api.showOrderSummary();
+    });
 });
 ```
 
@@ -77,19 +78,23 @@ Now what if we have to update the wallet, now this will have a dependency over `
 
 ```js
 api.createOrder(cart, function () {
-  api.proceedToPayment(function () {
-    api.showOrderSummary(function () {
-      api.updateWallet();
+    api.proceedToPayment(function () {
+        api.showOrderSummary(function () {
+            api.updateWallet();
+        });
     });
-  });
 });
 // 💡 Callback Hell
 ```
 
 When we have a large codebase and multiple apis and have dependency on each other, then we fall into callback hell.
-These codes are tough to maintain.
+These codes are unmaintainable and unreadable.
+Code start growing horizontially instead of vertically
 These callback hell structure is also known as **Pyramid of Doom**.
 
+![image](https://github.com/user-attachments/assets/851f3c25-1bf3-4386-802c-e103b1865417)
+
+## Inversion of Control
 Till this point we are comfortable with concept of callback hell but now lets discuss about `Inversion of Control`. It is very important to understand in order to get comfortable around the concept of promise.
 
 > 💡 Inversion of control is like that you lose the control of code when we are using callback.
@@ -100,23 +105,16 @@ Let's understand with the help of example code and comments:
 api.createOrder(cart, function () {
   api.proceedToPayment();
 });
-
-// 💡 So over here, we are creating a order and then we are blindly trusting `createOrder` to call `proceedToPayment`.
-
-// 💡 It is risky, as `proceedToPayment` is important part of code and we are blindly trusting `createOrder` to call it and handle it.
-
-// 💡 When we pass a function as a callback, basically we are dependant on our parent function that it is his responsibility to run that function. This is called `inversion of control` because we are dependant on that function. What if parent function stopped working, what if it was developed by another programmer or callback runs two times or never run at all.
-
-// 💡 In next session, we will see how we can fix such problems.
 ```
+
+* So over here, we are creating a order and then we are blindly trusting `createOrder` to call `proceedToPayment`.
+
+* It is risky, as `proceedToPayment` is important part of code and we are blindly trusting `createOrder` to call it and handle it.
+
+* When we pass a function as a callback, basically we are dependant on our parent function that it is his responsibility to run that function. This is called `inversion of control` because we are dependant on that function. What if parent function stopped working, what if it was developed by another programmer or callback function runs two times or never run at all.
+
+* In next session, we will see how we can fix such problems.
 
 > 💡 Async programming in JavaScript exists because callback exits.
 
 more at `http://callbackhell.com/`
-
-<hr>
-
-Watch Live On Youtube below:
-
-<a href="https://www.youtube.com/watch?v=yEKtJGha3yM&list=PLlasXeu85E9eWOpw9jxHOQyGMRiBZ60aX" target="_blank"><img src="https://img.youtube.com/vi/yEKtJGha3yM/0.jpg" width="750"
-alt="callback Youtube Link"/></a>
